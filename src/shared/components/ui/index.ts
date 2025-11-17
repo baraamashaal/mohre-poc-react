@@ -5,3 +5,6 @@ export type {
   ButtonSize,
   ButtonColor,
 } from './Button';
+
+export { Alert } from './Alert';
+export type { AlertProps } from './Alert';
