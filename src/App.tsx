@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '@components/Button';
+import { Button } from '@components/ui';
 import './App.css';
 
 function App() {
@@ -14,10 +14,13 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">AEGOV Button Component</h1>
+        <header>
+          <h1 className="text-4xl font-bold text-gray-900 mb-8">AEGOV Button Component</h1>
+        </header>
 
-        {/* Variants */}
-        <section className="mb-12">
+        <main>
+          {/* Variants */}
+          <section className="mb-12">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Variants</h2>
           <div className="flex flex-wrap gap-4">
             <Button variant="solid">Solid Button</Button>
@@ -117,6 +120,7 @@ function App() {
             </Button>
           </div>
         </section>
+        </main>
       </div>
     </div>
   );

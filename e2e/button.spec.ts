@@ -197,7 +197,10 @@ test.describe('Button Component E2E', () => {
 
   test.describe('Accessibility', () => {
     test('should meet WCAG accessibility standards', async ({ page }) => {
-      // Use the actual demo page for accessibility testing
+      // Wait for page to be fully loaded with buttons visible
+      await page.waitForSelector('.aegov-btn');
+
+      // Run accessibility check without options (checks whole page)
       await checkAccessibility(page);
     });
 

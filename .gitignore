@@ -43,3 +43,6 @@ playwright-report
 nul
 Thumbs.db
 Desktop.ini
+
+*storybook.log
+storybook-static
