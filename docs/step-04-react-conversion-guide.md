@@ -2885,6 +2885,588 @@ When converting an AEGOV component to React:
 
 ---
 
+## Creating New Components: Step-by-Step Workflow
+
+When adding a new AEGOV component to the project, follow this TDD (Test-Driven Development) workflow:
+
+### Step 1: Create Component Structure
+
+Create the component files in the appropriate directory based on the component type:
+
+**UI Components:**
+```
+src/shared/components/ui/ComponentName/
+├── ComponentName.tsx          # Component implementation
+├── ComponentName.types.ts     # TypeScript interfaces
+├── ComponentName.test.tsx     # Unit tests
+├── ComponentName.stories.tsx  # Storybook stories
+└── index.ts                   # Barrel export
+```
+
+**Form Components:**
+```
+src/shared/components/forms/ComponentName/
+├── ComponentName.tsx
+├── ComponentName.types.ts
+├── ComponentName.test.tsx
+├── ComponentName.stories.tsx
+└── index.ts
+```
+
+### Step 2: Define TypeScript Types
+
+**ComponentName.types.ts:**
+```typescript
+export interface ComponentNameProps {
+  // Core props
+  children?: React.ReactNode;
+
+  // Variants
+  variant?: 'solid' | 'outline' | 'soft';
+  size?: 'xs' | 'sm' | 'base' | 'lg';
+  color?: 'primary' | 'secondary';
+
+  // States
+  disabled?: boolean;
+  loading?: boolean;
+
+  // Callbacks
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  onChange?: (value: string) => void;
+
+  // Accessibility
+  'aria-label'?: string;
+  'aria-describedby'?: string;
+
+  // Styling
+  className?: string;
+}
+```
+
+### Step 3: Write Unit Tests (TDD)
+
+**ComponentName.test.tsx:**
+```typescript
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { ComponentName } from './ComponentName';
+
+describe('ComponentName', () => {
+  describe('Rendering', () => {
+    it('renders with default props', () => {
+      render(<ComponentName>Test</ComponentName>);
+      expect(screen.getByText('Test')).toBeInTheDocument();
+    });
+
+    it('applies custom className', () => {
+      const { container } = render(
+        <ComponentName className="custom-class">Test</ComponentName>
+      );
+      expect(container.firstChild).toHaveClass('custom-class');
+    });
+  });
+
+  describe('Variants', () => {
+    it('renders solid variant (default)', () => {
+      const { container } = render(<ComponentName>Test</ComponentName>);
+      expect(container.firstChild).toHaveClass('aegov-component-name');
+    });
+
+    it('renders outline variant', () => {
+      const { container } = render(
+        <ComponentName variant="outline">Test</ComponentName>
+      );
+      expect(container.firstChild).toHaveClass('component-outline');
+    });
+  });
+
+  describe('Sizes', () => {
+    it('renders base size (default)', () => {
+      const { container } = render(<ComponentName>Test</ComponentName>);
+      expect(container.firstChild).not.toHaveClass('component-xs');
+    });
+
+    it('renders lg size', () => {
+      const { container } = render(
+        <ComponentName size="lg">Test</ComponentName>
+      );
+      expect(container.firstChild).toHaveClass('component-lg');
+    });
+  });
+
+  describe('States', () => {
+    it('handles disabled state', () => {
+      render(<ComponentName disabled>Test</ComponentName>);
+      expect(screen.getByText('Test')).toBeDisabled();
+    });
+
+    it('handles loading state', () => {
+      render(<ComponentName loading>Test</ComponentName>);
+      expect(screen.getByRole('status')).toBeInTheDocument();
+    });
+  });
+
+  describe('Interactions', () => {
+    it('handles click events', async () => {
+      const user = userEvent.setup();
+      const handleClick = vi.fn();
+
+      render(<ComponentName onClick={handleClick}>Test</ComponentName>);
+      await user.click(screen.getByText('Test'));
+
+      expect(handleClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not fire click when disabled', async () => {
+      const user = userEvent.setup();
+      const handleClick = vi.fn();
+
+      render(
+        <ComponentName onClick={handleClick} disabled>Test</ComponentName>
+      );
+      await user.click(screen.getByText('Test'));
+
+      expect(handleClick).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Accessibility', () => {
+    it('has proper ARIA attributes', () => {
+      render(
+        <ComponentName aria-label="Test component">Test</ComponentName>
+      );
+      expect(screen.getByLabelText('Test component')).toBeInTheDocument();
+    });
+
+    it('supports keyboard navigation', async () => {
+      const user = userEvent.setup();
+      const handleClick = vi.fn();
+
+      render(<ComponentName onClick={handleClick}>Test</ComponentName>);
+
+      const element = screen.getByText('Test');
+      element.focus();
+      await user.keyboard('{Enter}');
+
+      expect(handleClick).toHaveBeenCalled();
+    });
+  });
+});
+```
+
+### Step 4: Implement Component
+
+**ComponentName.tsx:**
+```typescript
+import { forwardRef } from 'react';
+import { motion } from 'framer-motion';
+import clsx from 'clsx';
+import type { ComponentNameProps } from './ComponentName.types';
+
+export const ComponentName = forwardRef<HTMLElement, ComponentNameProps>(
+  (
+    {
+      children,
+      variant = 'solid',
+      size = 'base',
+      color = 'primary',
+      disabled = false,
+      loading = false,
+      className,
+      onClick,
+      ...rest
+    },
+    ref
+  ) => {
+    const isDisabled = disabled || loading;
+
+    const classes = clsx(
+      'aegov-component-name',
+      {
+        'component-outline': variant === 'outline',
+        'component-soft': variant === 'soft',
+      },
+      {
+        'component-xs': size === 'xs',
+        'component-sm': size === 'sm',
+        'component-lg': size === 'lg',
+      },
+      {
+        'component-secondary': color === 'secondary',
+      },
+      className
+    );
+
+    const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+      if (isDisabled) {
+        e.preventDefault();
+        return;
+      }
+      onClick?.(e);
+    };
+
+    return (
+      <motion.div
+        ref={ref}
+        className={classes}
+        onClick={handleClick}
+        aria-disabled={isDisabled}
+        whileHover={isDisabled ? undefined : { scale: 1.02 }}
+        whileTap={isDisabled ? undefined : { scale: 0.98 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+        {...rest}
+      >
+        {loading && (
+          <span role="status" aria-label="Loading">
+            {/* Loading spinner */}
+          </span>
+        )}
+        {children}
+      </motion.div>
+    );
+  }
+);
+
+ComponentName.displayName = 'ComponentName';
+```
+
+### Step 5: Create Barrel Export
+
+**index.ts:**
+```typescript
+export { ComponentName } from './ComponentName';
+export type { ComponentNameProps } from './ComponentName.types';
+```
+
+### Step 6: Update Parent Barrel Exports
+
+**src/shared/components/ui/index.ts:**
+```typescript
+export * from './Button';
+export * from './ComponentName'; // Add new component
+```
+
+**src/shared/components/index.ts:**
+```typescript
+export * from './ui';
+export * from './forms';
+export * from './layout';
+```
+
+### Step 7: Create Storybook Stories
+
+**ComponentName.stories.tsx:**
+```typescript
+import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentName } from './ComponentName';
+
+/**
+ * ComponentName based on UAE Government Design System.
+ *
+ * Brief description of what this component does and when to use it.
+ */
+const meta = {
+  title: 'UI Components/ComponentName',
+  component: ComponentName,
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Detailed description of the component, its features, and usage guidelines.',
+      },
+    },
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['solid', 'outline', 'soft'],
+      description: 'Visual style variant',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'solid' },
+      },
+    },
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'base', 'lg'],
+      description: 'Component size',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'base' },
+      },
+    },
+    color: {
+      control: 'select',
+      options: ['primary', 'secondary'],
+      description: 'Color scheme',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disabled state',
+    },
+    loading: {
+      control: 'boolean',
+      description: 'Loading state',
+    },
+  },
+} satisfies Meta<typeof ComponentName>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+// Default story
+export const Default: Story = {
+  args: {
+    children: 'Component Name',
+  },
+};
+
+// Variants
+export const Solid: Story = {
+  args: {
+    variant: 'solid',
+    children: 'Solid Variant',
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    variant: 'outline',
+    children: 'Outline Variant',
+  },
+};
+
+export const Soft: Story = {
+  args: {
+    variant: 'soft',
+    children: 'Soft Variant',
+  },
+};
+
+// Sizes
+export const ExtraSmall: Story = {
+  args: {
+    size: 'xs',
+    children: 'Extra Small',
+  },
+};
+
+export const Small: Story = {
+  args: {
+    size: 'sm',
+    children: 'Small',
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: 'lg',
+    children: 'Large',
+  },
+};
+
+// States
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    children: 'Disabled',
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    loading: true,
+    children: 'Loading...',
+  },
+};
+
+// Showcase - All Variants
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4" style={{ width: '300px' }}>
+      <ComponentName variant="solid">Solid</ComponentName>
+      <ComponentName variant="outline">Outline</ComponentName>
+      <ComponentName variant="soft">Soft</ComponentName>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'All component variants displayed together for comparison.',
+      },
+    },
+  },
+};
+
+// Showcase - All Sizes
+export const AllSizes: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      <ComponentName size="xs">XS</ComponentName>
+      <ComponentName size="sm">SM</ComponentName>
+      <ComponentName size="base">Base</ComponentName>
+      <ComponentName size="lg">LG</ComponentName>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'All component sizes displayed together for comparison.',
+      },
+    },
+  },
+};
+
+// Interactive Example
+export const Interactive: Story = {
+  render: () => {
+    const [count, setCount] = useState(0);
+
+    return (
+      <ComponentName onClick={() => setCount(count + 1)}>
+        Clicked {count} times
+      </ComponentName>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive example demonstrating component behavior.',
+      },
+    },
+  },
+};
+```
+
+### Step 8: Create E2E Tests
+
+**e2e/component-name.spec.ts:**
+```typescript
+import { test, expect } from '@playwright/test';
+import { checkAccessibility } from './utils/aegov-helpers';
+
+test.describe('ComponentName E2E Tests', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/'); // Update with actual route
+  });
+
+  test('renders correctly', async ({ page }) => {
+    const component = page.locator('.aegov-component-name').first();
+    await expect(component).toBeVisible();
+  });
+
+  test('handles click interactions', async ({ page }) => {
+    const component = page.locator('.aegov-component-name').first();
+    await component.click();
+    // Assert expected behavior
+  });
+
+  test('meets accessibility standards', async ({ page }) => {
+    await checkAccessibility(page);
+  });
+
+  test('supports keyboard navigation', async ({ page }) => {
+    const component = page.locator('.aegov-component-name').first();
+    await component.focus();
+    await page.keyboard.press('Enter');
+    // Assert expected behavior
+  });
+
+  test('supports RTL layout', async ({ page }) => {
+    await page.evaluate(() => {
+      document.documentElement.setAttribute('dir', 'rtl');
+    });
+
+    const component = page.locator('.aegov-component-name').first();
+    await expect(component).toBeVisible();
+  });
+});
+```
+
+### Step 9: Run Tests and Verify
+
+Run the following commands to ensure everything works:
+
+```bash
+# Run linter
+npm run lint
+
+# Run unit tests
+npm run test
+
+# Run E2E tests (when needed)
+npm run test:e2e
+
+# Run Storybook to verify documentation
+npm run storybook
+```
+
+### Step 10: Document Usage
+
+Add a usage example in the component file or README:
+
+```typescript
+/**
+ * @example
+ * Basic usage:
+ * ```tsx
+ * <ComponentName variant="solid" size="lg">
+ *   Click me
+ * </ComponentName>
+ * ```
+ *
+ * @example
+ * With loading state:
+ * ```tsx
+ * <ComponentName loading onClick={handleClick}>
+ *   Loading...
+ * </ComponentName>
+ * ```
+ *
+ * @example
+ * Disabled state:
+ * ```tsx
+ * <ComponentName disabled>
+ *   Cannot click
+ * </ComponentName>
+ * ```
+ */
+```
+
+### Workflow Summary
+
+1. ✅ Create component file structure
+2. ✅ Define TypeScript types
+3. ✅ Write unit tests (TDD approach)
+4. ✅ Implement component to pass tests
+5. ✅ Create barrel exports
+6. ✅ Update parent barrel exports
+7. ✅ Create Storybook stories
+8. ✅ Create E2E tests
+9. ✅ Run all tests and linter
+10. ✅ Document component usage
+
+### Quick Reference Checklist
+
+- [ ] Component files created in correct directory
+- [ ] TypeScript interfaces defined
+- [ ] Unit tests written and passing
+- [ ] Component implementation complete
+- [ ] Barrel exports updated
+- [ ] Storybook stories created
+- [ ] E2E tests created
+- [ ] Accessibility verified
+- [ ] RTL support tested
+- [ ] ESLint passing
+- [ ] All tests passing
+- [ ] Documentation complete
+
+---
+
 **Conversion Guide Completed:** 2025-11-17
+**Updated:** 2025-11-17 (Added Storybook workflow)
 **Ready for:** React component implementation
 **Reference:** Steps 01, 02, 03 for AEGOV system details
