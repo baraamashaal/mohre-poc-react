@@ -9,11 +9,26 @@ export const routes = {
   // Public routes
   home: '/',
 
-  // Documentation
-  docs: {
-    home: '/docs',
-    button: '/docs/button',
-    // Add more component docs here
+  // Component Showcase (for E2E testing and visual verification)
+  showcase: {
+    accordion: '/showcase/accordion',
+    alert: '/showcase/alert',
+    avatar: '/showcase/avatar',
+    badge: '/showcase/badge',
+    banner: '/showcase/banner',
+    button: '/showcase/button',
+    card: '/showcase/card',
+    checkbox: '/showcase/checkbox',
+    dropdown: '/showcase/dropdown',
+    fileInput: '/showcase/file-input',
+    hyperlink: '/showcase/hyperlink',
+    input: '/showcase/input',
+    radio: '/showcase/radio',
+    rangeSlider: '/showcase/range-slider',
+    select: '/showcase/select',
+    textarea: '/showcase/textarea',
+    toggle: '/showcase/toggle',
+    // Add more component showcases here
   },
 
   // Dashboard

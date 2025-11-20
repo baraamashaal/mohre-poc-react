@@ -13,9 +13,87 @@ import App from '../App';
 const Dashboard = lazy(() => import('../features/dashboard/pages/Dashboard'));
 const NotFound = lazy(() => import('../shared/components/errors/NotFound'));
 
-// Documentation pages
-const DocsHome = lazy(() => import('../features/docs/pages/DocsHome'));
-const ButtonDocs = lazy(() => import('../features/docs/pages/ButtonDocs'));
+// Component Showcase pages (for E2E testing and visual verification)
+const AccordionShowcase = lazy(() =>
+  import('../features/component-showcase/pages/AccordionShowcase').then((module) => ({
+    default: module.AccordionShowcase,
+  }))
+);
+const AlertShowcase = lazy(() =>
+  import('../features/component-showcase/pages/AlertShowcase').then((module) => ({
+    default: module.AlertShowcase,
+  }))
+);
+const AvatarShowcase = lazy(() =>
+  import('../features/component-showcase/pages/AvatarShowcase').then((module) => ({
+    default: module.AvatarShowcase,
+  }))
+);
+const BannerShowcase = lazy(() =>
+  import('../features/component-showcase/pages/BannerShowcase').then((module) => ({
+    default: module.BannerShowcase,
+  }))
+);
+const BadgeShowcase = lazy(() =>
+  import('../features/component-showcase/pages/BadgeShowcase').then((module) => ({
+    default: module.BadgeShowcase,
+  }))
+);
+const InputShowcase = lazy(() =>
+  import('../features/component-showcase/pages/InputShowcase').then((module) => ({
+    default: module.InputShowcase,
+  }))
+);
+const TextareaShowcase = lazy(() =>
+  import('../features/component-showcase/pages/TextareaShowcase').then((module) => ({
+    default: module.TextareaShowcase,
+  }))
+);
+const CheckboxShowcase = lazy(() =>
+  import('../features/component-showcase/pages/CheckboxShowcase').then((module) => ({
+    default: module.CheckboxShowcase,
+  }))
+);
+const RadioShowcase = lazy(() =>
+  import('../features/component-showcase/pages/RadioShowcase').then((module) => ({
+    default: module.RadioShowcase,
+  }))
+);
+const SelectShowcase = lazy(() =>
+  import('../features/component-showcase/pages/SelectShowcase').then((module) => ({
+    default: module.SelectShowcase,
+  }))
+);
+const ToggleShowcase = lazy(() =>
+  import('../features/component-showcase/pages/ToggleShowcase').then((module) => ({
+    default: module.ToggleShowcase,
+  }))
+);
+const RangeSliderShowcase = lazy(() =>
+  import('../features/component-showcase/pages/RangeSliderShowcase').then((module) => ({
+    default: module.RangeSliderShowcase,
+  }))
+);
+const DropdownShowcase = lazy(() =>
+  import('../features/component-showcase/pages/DropdownShowcase').then((module) => ({
+    default: module.DropdownShowcase,
+  }))
+);
+const CardShowcase = lazy(() =>
+  import('../features/component-showcase/pages/CardShowcase').then((module) => ({
+    default: module.CardShowcase,
+  }))
+);
+const HyperlinkShowcase = lazy(() =>
+  import('../features/component-showcase/pages/HyperlinkShowcase').then((module) => ({
+    default: module.HyperlinkShowcase,
+  }))
+);
+const FileInputShowcase = lazy(() =>
+  import('../features/component-showcase/pages/FileInputShowcase').then((module) => ({
+    default: module.FileInputShowcase,
+  }))
+);
 
 /**
  * Loading fallback component
@@ -43,20 +121,132 @@ export const router = createBrowserRouter([
     element: <App />, // Button demo page
   },
 
-  // Documentation routes (public)
+  // Component Showcase routes (public - for E2E testing and visual verification)
   {
-    path: routes.docs.home,
+    path: routes.showcase.accordion,
     element: (
       <Suspense fallback={<PageLoader />}>
-        <DocsHome />
+        <AccordionShowcase />
       </Suspense>
     ),
   },
   {
-    path: routes.docs.button,
+    path: routes.showcase.alert,
     element: (
       <Suspense fallback={<PageLoader />}>
-        <ButtonDocs />
+        <AlertShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.avatar,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <AvatarShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.banner,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <BannerShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.badge,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <BadgeShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.input,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <InputShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.textarea,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <TextareaShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.checkbox,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <CheckboxShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.radio,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <RadioShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.select,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <SelectShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.toggle,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <ToggleShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.rangeSlider,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <RangeSliderShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.dropdown,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <DropdownShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.card,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <CardShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.hyperlink,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <HyperlinkShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.fileInput,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <FileInputShowcase />
       </Suspense>
     ),
   },

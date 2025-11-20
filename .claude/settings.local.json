@@ -11,7 +11,14 @@
       "Bash(mkdir:*)",
       "Bash(npx playwright:*)",
       "Bash(npm run test)",
-      "Bash(npm run test:*)"
+      "Bash(npm run test:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run test:ui:*)",
+      "Bash(node scripts/fetch-aegov-docs.js:*)",
+      "Bash(for file in file-input hyperlink textarea)",
+      "Bash(do test -f \"C:\\Code\\mohre-poc-from-scratch\\docs\\components$file.md\")",
+      "Bash(echo:*)",
+      "Bash(done)"
     ],
     "deny": [],
     "ask": []
