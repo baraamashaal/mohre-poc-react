@@ -13,6 +13,13 @@ import App from '../App';
 const Dashboard = lazy(() => import('../features/dashboard/pages/Dashboard'));
 const NotFound = lazy(() => import('../shared/components/errors/NotFound'));
 
+// Component Showcase Index
+const ShowcaseIndex = lazy(() =>
+  import('../features/component-showcase/pages/ShowcaseIndex').then((module) => ({
+    default: module.ShowcaseIndex,
+  }))
+);
+
 // Component Showcase pages (for E2E testing and visual verification)
 const AccordionShowcase = lazy(() =>
   import('../features/component-showcase/pages/AccordionShowcase').then((module) => ({
@@ -39,9 +46,24 @@ const BadgeShowcase = lazy(() =>
     default: module.BadgeShowcase,
   }))
 );
+const BlockquoteShowcase = lazy(() =>
+  import('../features/component-showcase/pages/BlockquoteShowcase').then((module) => ({
+    default: module.BlockquoteShowcase,
+  }))
+);
+const BreadcrumbShowcase = lazy(() =>
+  import('../features/component-showcase/pages/BreadcrumbShowcase').then((module) => ({
+    default: module.BreadcrumbShowcase,
+  }))
+);
 const InputShowcase = lazy(() =>
   import('../features/component-showcase/pages/InputShowcase').then((module) => ({
     default: module.InputShowcase,
+  }))
+);
+const PaginationShowcase = lazy(() =>
+  import('../features/component-showcase/pages/PaginationShowcase').then((module) => ({
+    default: module.PaginationShowcase,
   }))
 );
 const TextareaShowcase = lazy(() =>
@@ -94,6 +116,16 @@ const FileInputShowcase = lazy(() =>
     default: module.FileInputShowcase,
   }))
 );
+const SliderShowcase = lazy(() =>
+  import('../features/component-showcase/pages/SliderShowcase').then((module) => ({
+    default: module.SliderShowcase,
+  }))
+);
+const StepsShowcase = lazy(() =>
+  import('../features/component-showcase/pages/StepsShowcase').then((module) => ({
+    default: module.StepsShowcase,
+  }))
+);
 
 /**
  * Loading fallback component
@@ -119,6 +151,16 @@ export const router = createBrowserRouter([
   {
     path: routes.home,
     element: <App />, // Button demo page
+  },
+
+  // Component Showcase Index
+  {
+    path: routes.showcases,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <ShowcaseIndex />
+      </Suspense>
+    ),
   },
 
   // Component Showcase routes (public - for E2E testing and visual verification)
@@ -163,10 +205,34 @@ export const router = createBrowserRouter([
     ),
   },
   {
+    path: routes.showcase.blockquote,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <BlockquoteShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.breadcrumb,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <BreadcrumbShowcase />
+      </Suspense>
+    ),
+  },
+  {
     path: routes.showcase.input,
     element: (
       <Suspense fallback={<PageLoader />}>
         <InputShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.pagination,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <PaginationShowcase />
       </Suspense>
     ),
   },
@@ -247,6 +313,22 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<PageLoader />}>
         <FileInputShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.steps,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <StepsShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.slider,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <SliderShowcase />
       </Suspense>
     ),
   },

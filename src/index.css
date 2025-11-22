@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* Steps Component - AEGOV Design System */
+
+  /* Step badge sizing */
+  .aegov-step .step-badge {
+    @apply w-10 h-10 text-base;
+  }
+
+  .aegov-step.step-sm .step-badge {
+    @apply w-8 h-8 text-sm;
+  }
+
+  .aegov-step.step-lg .step-badge {
+    @apply w-12 h-12 text-lg;
+  }
+
+  /* Horizontal connector line */
+  .step-connector {
+    @apply absolute left-0 right-0 top-5 -z-10;
+  }
+
+  .step-connector-state {
+    @apply h-0.5;
+  }
+
+  /* Vertical connector line */
+  .step-connector-vertical {
+    @apply absolute left-5 top-0 w-0.5 h-full;
+  }
+
+  /* Label below badge */
+  .step-text-below {
+    @apply block mt-2 text-center text-sm font-medium;
+  }
+}

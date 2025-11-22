@@ -58,3 +58,18 @@ export type { AvatarProps, AvatarSize, AvatarVariant, AvatarStatus } from './Ava
 
 export { Banner } from './Banner';
 export type { BannerProps, BannerPosition, BannerVariant, BannerAction } from './Banner';
+
+export { Blockquote } from './Blockquote';
+export type { BlockquoteProps, BlockquoteStyle } from './Blockquote';
+
+export { Breadcrumb } from './Breadcrumb';
+export type { BreadcrumbProps, BreadcrumbItem, BreadcrumbSeparator } from './Breadcrumb';
+
+export { Pagination } from './Pagination';
+export type { PaginationProps } from './Pagination';
+
+export { Steps } from './Steps';
+export type { StepsProps, Step, StepSize, StepOrientation } from './Steps';
+
+export { Slider, AegovSlider } from './Slider';
+export type { SliderProps } from './Slider';

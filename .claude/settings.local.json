@@ -18,7 +18,13 @@
       "Bash(for file in file-input hyperlink textarea)",
       "Bash(do test -f \"C:\\Code\\mohre-poc-from-scratch\\docs\\components$file.md\")",
       "Bash(echo:*)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(npm run build:*)",
+      "Bash(npm run test:e2e:*)",
+      "Bash(timeout 35 sh:*)",
+      "Bash(npm run test:e2e:pagination:*)",
+      "Bash(npm run test:e2e:steps:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

@@ -10,12 +10,15 @@ export const routes = {
   home: '/',
 
   // Component Showcase (for E2E testing and visual verification)
+  showcases: '/showcases', // Index page listing all showcases
   showcase: {
     accordion: '/showcase/accordion',
     alert: '/showcase/alert',
     avatar: '/showcase/avatar',
     badge: '/showcase/badge',
     banner: '/showcase/banner',
+    blockquote: '/showcase/blockquote',
+    breadcrumb: '/showcase/breadcrumb',
     button: '/showcase/button',
     card: '/showcase/card',
     checkbox: '/showcase/checkbox',
@@ -23,9 +26,12 @@ export const routes = {
     fileInput: '/showcase/file-input',
     hyperlink: '/showcase/hyperlink',
     input: '/showcase/input',
+    pagination: '/showcase/pagination',
     radio: '/showcase/radio',
     rangeSlider: '/showcase/range-slider',
     select: '/showcase/select',
+    slider: '/showcase/slider',
+    steps: '/showcase/steps',
     textarea: '/showcase/textarea',
     toggle: '/showcase/toggle',
     // Add more component showcases here
