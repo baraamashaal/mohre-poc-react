@@ -18,65 +18,62 @@ Default variation with basic structure.
 
 ```html
 <div class="aegov-tab">
-	<ul class="tab-items" data-tabs-toggle="#tab-content" role="tablist">
-		<li role="presentation">
-			<a href="#" role="tab" data-tabs-target="#profile" aria-controls="profile" aria-selected="false">Profile</a>
-		</li>
-		<li role="presentation">
-			<a href="#" role="tab" data-tabs-target="#dashboard" aria-controls="dashboard" aria-selected="true">Dashboard</a>
-		</li>
-		<li role="presentation">
-			<a href="#" role="tab" data-tabs-target="#settings" aria-controls="settings" aria-selected="false">Settings</a>
-		</li>
-	</ul>
+    <ul class="tab-items gap-4 md:gap-6 lg:gap-7 xl:gap-8 max-xl:overflow-auto" data-tabs-toggle="#SampleLayout-Tabs-01" role="tablist">
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item1-sample-01" role="tab" id="tab-item1-sample-01" aria-controls="body-item1-sample-01" aria-selected="true" class="tab-link whitespace-nowrap tab-active">All services</a></li>
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item2-sample-01" role="tab" id="tab-item2-sample-01" aria-controls="body-item2-sample-01" aria-selected="false" class="tab-link whitespace-nowrap tab-inactive">Category 1</a></li>
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item3-sample-01" role="tab" id="tab-item3-sample-01" aria-controls="body-item3-sample-01" aria-selected="false" class="tab-link whitespace-nowrap tab-inactive">Category 2</a></li>
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item4-sample-01" role="tab" id="tab-item4-sample-01" aria-controls="body-item4-sample-01" aria-selected="false" class="tab-link whitespace-nowrap tab-inactive">Category 3</a></li>
+    </ul>
 </div>
-<div id="tab-content">
-	<div class="hidden" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-		<p class="text-sm text-aeblack-500">Profile content goes here.</p>
-	</div>
-	<div id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-		<p class="text-sm text-aeblack-500">Dashboard content goes here.</p>
-	</div>
-	<div class="hidden" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-		<p class="text-sm text-aeblack-500">Settings content goes here.</p>
-	</div>
+<div id="SampleLayout-Tabs-01" class="py-4">
+    <div class="tab-content" role="tabpanel" id="body-item1-sample-01">
+        <p>This is the content area for the tab "all services"</p>
+    </div>
+    <div class="tab-content" role="tabpanel" id="body-item2-sample-01">
+        <p>This is the content area for the tab "category 1"</p>
+    </div>
+    <div class="tab-content" role="tabpanel" id="body-item3-sample-01">
+        <p>This is the content area for the tab "category 2"</p>
+    </div>
+    <div class="tab-content" role="tabpanel" id="body-item4-sample-01">
+        <p>This is the content area for the tab "category 3"</p>
+    </div>
 </div>
 ```
 
-**Note:** Active tab has `aria-selected="true"`. Inactive panels have `.hidden` class. Use `data-tabs-toggle` on list and `data-tabs-target` on links.
+**Note:** Active tab has `aria-selected="true"` and `tab-active` class. Inactive tabs have `aria-selected="false"` and `tab-inactive` class. Inactive panels have `.hidden` class. Use `data-tabs-toggle` on list and `data-tabs-target` on links.
 
 ### Example 2: Compact Tabs
 
-Uses `tab-sm` class for smaller screens with reduced font size.
+Uses `tab-sm` class on wrapper for smaller screens with reduced font size.
 
 ```html
-<div class="aegov-tab">
-	<ul class="tab-items tab-sm" data-tabs-toggle="#compact-tab-content" role="tablist">
-		<li role="presentation">
-			<a href="#" role="tab" data-tabs-target="#profile-sm" aria-controls="profile-sm" aria-selected="false">Profile</a>
-		</li>
-		<li role="presentation">
-			<a href="#" role="tab" data-tabs-target="#dashboard-sm" aria-controls="dashboard-sm" aria-selected="true">Dashboard</a>
-		</li>
-		<li role="presentation">
-			<a href="#" role="tab" data-tabs-target="#settings-sm" aria-controls="settings-sm" aria-selected="false">Settings</a>
-		</li>
-	</ul>
+<div class="aegov-tab tab-sm">
+    <ul class="tab-items gap-4 md:gap-6 lg:gap-7 xl:gap-8 max-xl:overflow-auto" data-tabs-toggle="#SampleLayout-Tabs-01" role="tablist">
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item1-sample-01" role="tab" id="tab-item1-sample-01" aria-controls="body-item1-sample-01" class="tab-link whitespace-nowrap">All services</a></li>
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item2-sample-01" role="tab" id="tab-item2-sample-01" aria-controls="body-item2-sample-01" class="tab-link whitespace-nowrap">Category 1</a></li>
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item3-sample-01" role="tab" id="tab-item3-sample-01" aria-controls="body-item3-sample-01" class="tab-link whitespace-nowrap">Category 2</a></li>
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item4-sample-01" role="tab" id="tab-item4-sample-01" aria-controls="body-item4-sample-01" class="tab-link whitespace-nowrap">Category 3</a></li>
+    </ul>
 </div>
-<div id="compact-tab-content">
-	<div class="hidden" id="profile-sm" role="tabpanel" aria-labelledby="profile-sm-tab">
-		<p class="text-sm text-aeblack-500">Profile content in compact view.</p>
-	</div>
-	<div id="dashboard-sm" role="tabpanel" aria-labelledby="dashboard-sm-tab">
-		<p class="text-sm text-aeblack-500">Dashboard content in compact view.</p>
-	</div>
-	<div class="hidden" id="settings-sm" role="tabpanel" aria-labelledby="settings-sm-tab">
-		<p class="text-sm text-aeblack-500">Settings content in compact view.</p>
-	</div>
+<div id="SampleLayout-Tabs-01" class="py-4">
+    <div class="tab-content" role="tabpanel" id="body-item1-sample-01">
+        <p>This is the content area for the tab "all services"</p>
+    </div>
+    <div class="tab-content" role="tabpanel" id="body-item2-sample-01">
+        <p>This is the content area for the tab "category 1"</p>
+    </div>
+    <div class="tab-content" role="tabpanel" id="body-item3-sample-01">
+        <p>This is the content area for the tab "category 2"</p>
+    </div>
+    <div class="tab-content" role="tabpanel" id="body-item4-sample-01">
+        <p>This is the content area for the tab "category 3"</p>
+    </div>
 </div>
+
 ```
 
-**Note:** Add `.tab-sm` class to `.tab-items` for compact sizing. Designed to optimize space usage and visual presentation on smaller screens.
+**Note:** Add `.tab-sm` class to `.aegov-tab` wrapper for compact sizing. Designed to optimize space usage and visual presentation on smaller screens.
 
 ### Example 3: Tabs with Icons
 
@@ -84,90 +81,71 @@ SVG icons integrated before tab labels.
 
 ```html
 <div class="aegov-tab">
-	<ul class="tab-items" data-tabs-toggle="#icon-tab-content" role="tablist">
-		<li role="presentation">
-			<a href="#" role="tab" data-tabs-target="#profile-icon" aria-controls="profile-icon" aria-selected="false">
-				<svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor">
-					<rect width="256" height="256" fill="none"/>
-					<circle cx="128" cy="96" r="64" opacity="0.2"/>
-					<circle cx="128" cy="96" r="64" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="16"/>
-					<path d="M30.989,215.99064a112.03731,112.03731,0,0,1,194.02311.002" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
-				</svg>
-				Profile
-			</a>
-		</li>
-		<li role="presentation">
-			<a href="#" role="tab" data-tabs-target="#dashboard-icon" aria-controls="dashboard-icon" aria-selected="true">
-				<svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor">
-					<rect width="256" height="256" fill="none"/>
-					<rect x="32" y="48" width="192" height="160" rx="8" opacity="0.2"/>
-					<rect x="32" y="48" width="192" height="160" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
-					<line x1="32" y1="112" x2="224" y2="112" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
-					<line x1="128" y1="112" x2="128" y2="208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
-				</svg>
-				Dashboard
-			</a>
-		</li>
-		<li role="presentation">
-			<a href="#" role="tab" data-tabs-target="#settings-icon" aria-controls="settings-icon" aria-selected="false">
-				<svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor">
-					<rect width="256" height="256" fill="none"/>
-					<circle cx="128" cy="128" r="40" opacity="0.2"/>
-					<circle cx="128" cy="128" r="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
-					<path d="M130.05,206.11c-1.34,0-2.69,0-4,0L115.31,225a104.61,104.61,0,0,1-34.06-19.68l-.21-25.12a79.75,79.75,0,0,1-19.69-11.36L41.26,179.65a103.78,103.78,0,0,1-19.68-34.05l18.94-10.7A79.45,79.45,0,0,1,40.52,128c0-2.27.11-4.45.27-6.66L21.58,110.4a103.78,103.78,0,0,1,19.68-34l20.09,10.78a79.75,79.75,0,0,1,19.69-11.36l.21-25.12a104.61,104.61,0,0,1,34.06-19.68l10.74,18.89c1.33,0,2.67-.05,4-.05s2.69,0,4,.05l10.74-18.89a104.61,104.61,0,0,1,34.06,19.68l.21,25.12a79.59,79.59,0,0,1,19.69,11.36l20.09-10.78a103.78,103.78,0,0,1,19.68,34l-18.94,10.89a79.45,79.45,0,0,1,0,13.24l18.94,10.89a103.78,103.78,0,0,1-19.68,34l-20.09-10.78a79.59,79.59,0,0,1-19.69,11.36l-.21,25.12a104.61,104.61,0,0,1-34.06,19.68L130.05,206.11Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
-				</svg>
-				Settings
-			</a>
-		</li>
-	</ul>
+    <ul class="tab-items gap-4 md:gap-6 lg:gap-7 xl:gap-8 max-xl:overflow-auto" data-tabs-toggle="#SampleLayout-Tabs-03" role="tablist">
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item1-sample-x03" role="tab" id="tab-item1-sample-01" aria-controls="body-item1-sample-x03" class="tab-link whitespace-nowrap">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M180,40h28a8,8,0,0,1,8,8V76" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M180,216h28a8,8,0,0,0,8-8V180" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M76,216H48a8,8,0,0,1-8-8V180" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M76,40H48a8,8,0,0,0-8,8V76" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><circle cx="128" cy="112" r="32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M80,168a60,60,0,0,1,96,0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+            My account</a></li>
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item2-sample-x03" role="tab" id="tab-item2-sample-01" aria-controls="body-item2-sample-x03" class="tab-link whitespace-nowrap">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><circle cx="128" cy="128" r="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M130.05,206.11c-1.34,0-2.69,0-4,0L94,224a104.61,104.61,0,0,1-34.11-19.2l-.12-36c-.71-1.12-1.38-2.25-2-3.41L25.9,147.24a99.15,99.15,0,0,1,0-38.46l31.84-18.1c.65-1.15,1.32-2.29,2-3.41l.16-36A104.58,104.58,0,0,1,94,32l32,17.89c1.34,0,2.69,0,4,0L162,32a104.61,104.61,0,0,1,34.11,19.2l.12,36c.71,1.12,1.38,2.25,2,3.41l31.85,18.14a99.15,99.15,0,0,1,0,38.46l-31.84,18.1c-.65,1.15-1.32,2.29-2,3.41l-.16,36A104.58,104.58,0,0,1,162,224Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+            Settings</a></li>
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item3-sample-x03" role="tab" id="tab-item3-sample-01" aria-controls="body-item3-sample-x03" class="tab-link whitespace-nowrap">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><rect x="48" y="48" width="64" height="64" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="144" y="48" width="64" height="64" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="48" y="144" width="64" height="64" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="144" y="144" width="64" height="64" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+            Notifications</a></li>
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item4-sample-x03" role="tab" id="tab-item4-sample-01" aria-controls="body-item4-sample-x03" class="tab-link whitespace-nowrap">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><circle cx="128" cy="180" r="12"/><path d="M128,144v-8c17.67,0,32-12.54,32-28s-14.33-28-32-28S96,92.54,96,108v4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><circle cx="128" cy="128" r="96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+            Support</a></li>
+    </ul>
 </div>
-<div id="icon-tab-content">
-	<div class="hidden" id="profile-icon" role="tabpanel" aria-labelledby="profile-icon-tab">
-		<p class="text-sm text-aeblack-500">Profile content with icon.</p>
-	</div>
-	<div id="dashboard-icon" role="tabpanel" aria-labelledby="dashboard-icon-tab">
-		<p class="text-sm text-aeblack-500">Dashboard content with icon.</p>
-	</div>
-	<div class="hidden" id="settings-icon" role="tabpanel" aria-labelledby="settings-icon-tab">
-		<p class="text-sm text-aeblack-500">Settings content with icon.</p>
-	</div>
+<div id="SampleLayout-Tabs-03" class="py-4">
+    <div class="tab-content" role="tabpanel" id="body-item1-sample-x03">
+        <p>This is the content area for the tab "My account"</p>
+    </div>
+    <div class="tab-content" role="tabpanel" id="body-item2-sample-x03">
+        <p>This is the content area for the tab "Settings"</p>
+    </div>
+    <div class="tab-content" role="tabpanel" id="body-item3-sample-x03">
+        <p>This is the content area for the tab "Notifications"</p>
+    </div>
+    <div class="tab-content" role="tabpanel" id="body-item4-sample-x03">
+        <p>This is the content area for the tab "Support"</p>
+    </div>
 </div>
+
 ```
 
 **Note:** Include SVG icons before tab labels. Use `mr-2` for spacing between icon and text.
 
 ### Example 4: Pills Tabs
 
-Uses `tab-pills` class for pill-shaped design.
+Uses `tab-pills` class on wrapper for pill-shaped design with height and padding.
 
 ```html
-<div class="aegov-tab">
-	<ul class="tab-items tab-pills" data-tabs-toggle="#pills-tab-content" role="tablist">
-		<li role="presentation">
-			<a href="#" role="tab" data-tabs-target="#profile-pills" aria-controls="profile-pills" aria-selected="false">Profile</a>
-		</li>
-		<li role="presentation">
-			<a href="#" role="tab" data-tabs-target="#dashboard-pills" aria-controls="dashboard-pills" aria-selected="true">Dashboard</a>
-		</li>
-		<li role="presentation">
-			<a href="#" role="tab" data-tabs-target="#settings-pills" aria-controls="settings-pills" aria-selected="false">Settings</a>
-		</li>
-	</ul>
+<div class="aegov-tab tab-pills">
+    <ul class="tab-items gap-4 md:gap-6 lg:gap-7 xl:gap-8 max-xl:overflow-auto" data-tabs-toggle="#SampleLayout-Tabs-07" role="tablist">
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item1-sample-07" role="tab" id="tab-item1-sample-01" aria-controls="body-item1-sample-07" class="tab-link whitespace-nowrap h-10 lg:h-12 px-4 lg:px-6">All services</a></li>
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item2-sample-07" role="tab" id="tab-item2-sample-01" aria-controls="body-item2-sample-07" class="tab-link whitespace-nowrap h-10 lg:h-12 px-4 lg:px-6">Category 1</a></li>
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item3-sample-07" role="tab" id="tab-item3-sample-01" aria-controls="body-item3-sample-07" class="tab-link whitespace-nowrap h-10 lg:h-12 px-4 lg:px-6">Category 2</a></li>
+        <li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item4-sample-07" role="tab" id="tab-item4-sample-01" aria-controls="body-item4-sample-07" class="tab-link whitespace-nowrap h-10 lg:h-12 px-4 lg:px-6">Category 3</a></li>
+    </ul>
 </div>
-<div id="pills-tab-content">
-	<div class="hidden" id="profile-pills" role="tabpanel" aria-labelledby="profile-pills-tab">
-		<p class="text-sm text-aeblack-500">Profile content in pill style.</p>
-	</div>
-	<div id="dashboard-pills" role="tabpanel" aria-labelledby="dashboard-pills-tab">
-		<p class="text-sm text-aeblack-500">Dashboard content in pill style.</p>
-	</div>
-	<div class="hidden" id="settings-pills" role="tabpanel" aria-labelledby="settings-pills-tab">
-		<p class="text-sm text-aeblack-500">Settings content in pill style.</p>
-	</div>
+<div id="SampleLayout-Tabs-07" class="py-4">
+    <div class="tab-content" role="tabpanel" id="body-item1-sample-07">
+        <p>This is the content area for the tab "all services"</p>
+    </div>
+    <div class="tab-content" role="tabpanel" id="body-item2-sample-07">
+        <p>This is the content area for the tab "category 1"</p>
+    </div>
+    <div class="tab-content" role="tabpanel" id="body-item3-sample-07">
+        <p>This is the content area for the tab "category 2"</p>
+    </div>
+    <div class="tab-content" role="tabpanel" id="body-item4-sample-07">
+        <p>This is the content area for the tab "category 3"</p>
+    </div>
 </div>
+
 ```
 
-**Note:** Add `.tab-pills` class to `.tab-items` for rounded pill design.
+**Note:** Add `.tab-pills` class to `.aegov-tab` wrapper for rounded pill design. Pills variant links include `h-10 lg:h-12 px-4 lg:px-6` classes for proper height and padding.
 
 ## Size Variations
 
@@ -191,10 +169,12 @@ Deploy on homepages for service categorization, service landing pages, service c
 
 **HTML Code Structure:**
 
-- Wrapper: `.aegov-tab` class container
-- Tab list: `<ul class="tab-items">` with `data-tabs-toggle` attribute
-- Each tab: `<a>` with `role="tab"`, `data-tabs-target`, and `aria-controls`
-- Content panels: `<div role="tabpanel">` with matching IDs
+- Wrapper: `.aegov-tab` class container (add `.tab-sm` for compact or `.tab-pills` for pills variant)
+- Tab list: `<ul class="tab-items gap-4 md:gap-6 lg:gap-7 xl:gap-8 max-xl:overflow-auto">` with `data-tabs-toggle` attribute
+- Active tab link: `<a class="tab-link whitespace-nowrap tab-active">` with `role="tab"`, `aria-selected="true"`, `data-tabs-target`, `aria-controls`, and `onclick="return false;"`
+- Inactive tab links: `<a class="tab-link whitespace-nowrap tab-inactive">` with `role="tab"`, `aria-selected="false"`, `data-tabs-target`, `aria-controls`, and `onclick="return false;"`
+- Pills variant links: Add `h-10 lg:h-12 px-4 lg:px-6` classes for proper height and padding
+- Content panels: `<div role="tabpanel">` with matching IDs and `.hidden` class for inactive panels
 
 **Keyboard Interactions:**
 
@@ -214,14 +194,34 @@ Component supports RTL layouts. Requires enabling RTL via layout guidelines; exa
 <Tabs
 	items={[
 		{
+			id: string,
 			label: string,
-			value: string,
 			content: ReactNode,
-			icon?: Component
+			icon?: ReactNode,
+			disabled?: boolean,
+			ariaLabel?: string
 		}
 	]}
-	variant="default|compact|pills"
+	size="default|compact"
+	variant="default|pills"
+	defaultActiveTab={string}
+	activeTab={string}
+	onChange={(tabId: string) => void}
+	ariaLabel={string}
+	className={string}
+	data-testid={string}
 />
 ```
 
-React props: `items` (array of objects with label, value, content, icon), `variant` ("default" | "compact" | "pills")
+React props:
+- `items`: Array of tab objects with `id`, `label`, `content`, and optional `icon`, `disabled`, `ariaLabel`
+- `size`: "default" | "compact" (maps to `tab-sm` class)
+- `variant`: "default" | "pills" (maps to `tab-pills` class)
+- `defaultActiveTab`: Initial active tab ID (uncontrolled mode)
+- `activeTab`: Current active tab ID (controlled mode)
+- `onChange`: Callback when tab changes
+- `ariaLabel`: Accessible label for the tab list
+- `className`: Additional CSS classes
+- `data-testid`: Test ID for E2E testing
+
+**Note:** `size` and `variant` can be combined (e.g., `size="compact" variant="pills"`) to create compact pills tabs.

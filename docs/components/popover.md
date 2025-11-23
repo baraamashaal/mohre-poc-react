@@ -28,6 +28,7 @@ Standard version with title and description for concise contextual information.
 	</div>
 	<div data-popper-arrow></div>
 </div>
+
 ```
 
 **Note:** Use `data-popover-target` on button and matching `data-popover` ID on popover. Include `role="tooltip"` for accessibility. Arrow pointer uses `data-popper-arrow`.

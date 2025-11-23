@@ -37,8 +37,8 @@ The Tooltip component enhances user experience by providing supplementary inform
 ```html
 <button data-tooltip-target="tooltip-hover" data-tooltip-trigger="hover" type="button" class="aegov-btn">Tooltip hover</button>
 <div id="tooltip-hover" role="tooltip" class="z-10 aegov-tooltip">
-	Tooltip content
-	<div class="tooltip-arrow" data-popper-arrow></div>
+    Tooltip content
+    <div class="tooltip-arrow" data-popper-arrow></div>
 </div>
 ```
 
@@ -67,8 +67,8 @@ The Tooltip component enhances user experience by providing supplementary inform
 ```html
 <button data-tooltip-target="tooltip-top" data-tooltip-placement="top" type="button" class="aegov-btn">Tooltip top</button>
 <div id="tooltip-top" role="tooltip" class="z-10 aegov-tooltip">
-	Tooltip on top
-	<div class="tooltip-arrow" data-popper-arrow></div>
+    Tooltip on top
+    <div class="tooltip-arrow" data-popper-arrow></div>
 </div>
 ```
 
@@ -77,18 +77,18 @@ The Tooltip component enhances user experience by providing supplementary inform
 ```html
 <button data-tooltip-target="tooltip-right" data-tooltip-placement="right" type="button" class="aegov-btn">Tooltip right</button>
 <div id="tooltip-right" role="tooltip" class="z-10 aegov-tooltip">
-	Tooltip on right
-	<div class="tooltip-arrow" data-popper-arrow></div>
+    Tooltip on right
+    <div class="tooltip-arrow" data-popper-arrow></div>
 </div>
 ```
 
 ### Example 7: Tooltip Bottom
 
 ```html
-<button data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" type="button" class="aegov-btn">Tooltip bottom</button>
+	  <button data-tooltip-target="tooltip-bottom" data-tooltip-placement="bottom" type="button" class="aegov-btn">Tooltip bottom</button>
 <div id="tooltip-bottom" role="tooltip" class="z-10 aegov-tooltip">
-	Tooltip on bottom
-	<div class="tooltip-arrow" data-popper-arrow></div>
+    Tooltip on bottom
+    <div class="tooltip-arrow" data-popper-arrow></div>
 </div>
 ```
 
@@ -97,9 +97,9 @@ The Tooltip component enhances user experience by providing supplementary inform
 ```html
 <button data-tooltip-target="tooltip-left" data-tooltip-placement="left" type="button" class="aegov-btn">Tooltip left</button>
 <div id="tooltip-left" role="tooltip" class="z-10 aegov-tooltip">
-	Tooltip on left
-	<div class="tooltip-arrow" data-popper-arrow></div>
-</div>
+    Tooltip on left
+    <div class="tooltip-arrow" data-popper-arrow></div>
+</div>  
 ```
 
 ## Notes
@@ -135,10 +135,56 @@ Tooltips benefit:
 - Provide fallback for users who cannot trigger tooltips
 
 **React Implementation:**
+
 ```jsx
+import { Tooltip, Button } from '@/shared/components/ui';
+
+// Basic usage
 <Tooltip content="This is a basic tooltip">
   <Button>Hover me</Button>
 </Tooltip>
+
+// With custom placement
+<Tooltip content="Tooltip on right" side="right">
+  <Button>Hover me</Button>
+</Tooltip>
+
+// Click trigger
+<Tooltip content="Click to toggle" trigger="click">
+  <Button>Click me</Button>
+</Tooltip>
+
+// With custom delay and animation
+<Tooltip
+  content="Custom tooltip"
+  side="bottom"
+  delay={500}
+  animationDuration="duration-300"
+>
+  <Button>Custom tooltip</Button>
+</Tooltip>
 ```
 
-React props: `children` (ReactNode), `content` (string), `side` ("top" | "right" | "bottom" | "left"; default: "top")
+**React Props:**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `content` | `string` | *required* | The text content to display in the tooltip |
+| `children` | `ReactNode` | *required* | The trigger element that activates the tooltip |
+| `side` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'top'` | Placement of tooltip relative to trigger |
+| `trigger` | `'hover' \| 'click'` | `'hover'` | How the tooltip is activated |
+| `delay` | `number` | `200` | Delay before showing tooltip (milliseconds) |
+| `animationDuration` | `string` | `'duration-500'` | Tailwind animation duration class |
+| `className` | `string` | `undefined` | Additional CSS classes for the tooltip |
+| `data-testid` | `string` | `'tooltip'` | Test ID for E2E testing |
+
+**Features:**
+- ✅ Automatic positioning with Floating UI (@floating-ui/react)
+- ✅ Hover and click triggers
+- ✅ Keyboard accessible (focus shows tooltip)
+- ✅ Smooth animations with Framer Motion
+- ✅ Auto-placement fallback when viewport space is limited
+- ✅ Portal rendering to avoid z-index issues
+- ✅ Arrow pointer with automatic positioning
+- ✅ Full ARIA support for screen readers
+- ✅ TypeScript type safety

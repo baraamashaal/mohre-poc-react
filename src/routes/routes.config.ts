@@ -32,8 +32,11 @@ export const routes = {
     select: '/showcase/select',
     slider: '/showcase/slider',
     steps: '/showcase/steps',
+    tabs: '/showcase/tabs',
     textarea: '/showcase/textarea',
     toggle: '/showcase/toggle',
+    tooltip: '/showcase/tooltip',
+    popover: '/showcase/popover',
     // Add more component showcases here
   },
 

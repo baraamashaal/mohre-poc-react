@@ -73,3 +73,12 @@ export type { StepsProps, Step, StepSize, StepOrientation } from './Steps';
 
 export { Slider, AegovSlider } from './Slider';
 export type { SliderProps } from './Slider';
+
+export { Tabs } from './Tabs';
+export type { TabsProps, TabItem, TabSize, TabStyle } from './Tabs';
+
+export { Tooltip } from './Tooltip';
+export type { TooltipProps, TooltipPlacement, TooltipTrigger } from './Tooltip';
+
+export { Popover } from './Popover';
+export type { PopoverProps, PopoverSide, PopoverVariant } from './Popover';

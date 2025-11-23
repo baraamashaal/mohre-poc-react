@@ -29,8 +29,11 @@ export const ShowcaseIndex = () => {
     { name: 'Select', path: routes.showcase.select, available: true },
     { name: 'Slider', path: routes.showcase.slider, available: true },
     { name: 'Steps', path: routes.showcase.steps, available: true },
+    { name: 'Tabs', path: routes.showcase.tabs, available: true },
     { name: 'Textarea', path: routes.showcase.textarea, available: true },
     { name: 'Toggle', path: routes.showcase.toggle, available: true },
+    { name: 'Tooltip', path: routes.showcase.tooltip, available: true },
+    { name: 'Popover', path: routes.showcase.popover, available: true },
   ];
 
   return (

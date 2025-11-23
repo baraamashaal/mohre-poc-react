@@ -126,6 +126,21 @@ const StepsShowcase = lazy(() =>
     default: module.StepsShowcase,
   }))
 );
+const TabsShowcase = lazy(() =>
+  import('../features/component-showcase/pages/TabsShowcase').then((module) => ({
+    default: module.TabsShowcase,
+  }))
+);
+const TooltipShowcase = lazy(() =>
+  import('../features/component-showcase/pages/TooltipShowcase').then((module) => ({
+    default: module.TooltipShowcase,
+  }))
+);
+const PopoverShowcase = lazy(() =>
+  import('../features/component-showcase/pages/PopoverShowcase').then((module) => ({
+    default: module.PopoverShowcase,
+  }))
+);
 
 /**
  * Loading fallback component
@@ -329,6 +344,30 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<PageLoader />}>
         <SliderShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.tabs,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <TabsShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.tooltip,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <TooltipShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.popover,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <PopoverShowcase />
       </Suspense>
     ),
   },
