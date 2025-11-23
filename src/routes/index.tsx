@@ -141,6 +141,11 @@ const PopoverShowcase = lazy(() =>
     default: module.PopoverShowcase,
   }))
 );
+const ModalShowcase = lazy(() =>
+  import('../features/component-showcase/pages/ModalShowcase').then((module) => ({
+    default: module.ModalShowcase,
+  }))
+);
 
 /**
  * Loading fallback component
@@ -368,6 +373,14 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<PageLoader />}>
         <PopoverShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.modal,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <ModalShowcase />
       </Suspense>
     ),
   },

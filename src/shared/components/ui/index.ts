@@ -82,3 +82,13 @@ export type { TooltipProps, TooltipPlacement, TooltipTrigger } from './Tooltip';
 
 export { Popover } from './Popover';
 export type { PopoverProps, PopoverSide, PopoverVariant } from './Popover';
+
+export { Modal } from './Modal';
+export type {
+  ModalProps,
+  ModalSize,
+  ModalPlacement,
+  ModalVariant,
+  ModalIcon,
+  ModalAction,
+} from './Modal';

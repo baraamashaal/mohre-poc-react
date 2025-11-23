@@ -37,6 +37,7 @@ export const routes = {
     toggle: '/showcase/toggle',
     tooltip: '/showcase/tooltip',
     popover: '/showcase/popover',
+    modal: '/showcase/modal',
     // Add more component showcases here
   },
 
