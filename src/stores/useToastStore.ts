@@ -5,8 +5,13 @@ import { nanoid } from 'nanoid';
 export interface Toast {
   id: string;
   type: 'success' | 'error' | 'info' | 'warning';
+  title?: string;
   message: string;
   duration?: number;
+  action?: {
+    label: string;
+    onClick: () => void;
+  };
 }
 
 interface ToastState {

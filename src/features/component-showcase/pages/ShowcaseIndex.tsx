@@ -35,6 +35,7 @@ export const ShowcaseIndex = () => {
     { name: 'Tooltip', path: routes.showcase.tooltip, available: true },
     { name: 'Popover', path: routes.showcase.popover, available: true },
     { name: 'Modal', path: routes.showcase.modal, available: true },
+    { name: 'Toast', path: routes.showcase.toast, available: true },
   ];
 
   return (

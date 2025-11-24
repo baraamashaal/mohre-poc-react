@@ -34,21 +34,23 @@ Full-featured toast notification with all elements.
 
 ```html
 <div id="toast-message-cta" class="w-full max-w-xs aegov-toast relative z-10" role="alert">
-	<div class="flex items-start">
-		<div class="toast-icon text-primary-600">
-			<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"></path></svg>
-		</div>
-		<div class="toast-body">
-			<span class="mb-1 text-base font-semibold text-aeblack-900">John Doe</span>
-			<div class="mb-2 font-normal">Hi John, thanks for sharing your feedback regarding TDRA.</div>
-			<a href="" class="aegov-btn btn-xs">Replay</a>
-		</div>
-		<button type="button" class="toast-dismiss" data-dismiss-target="#toast-message-cta" aria-label="Close">
-			<span class="sr-only">Close</span>
-			<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>
-		</button>
-	</div>
+    <div class="flex items-start">
+        <div class="toast-icon text-primary-600">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"></path></svg>
+        </div>
+        <div class="toast-body">
+            <span class="mb-1 text-base font-semibold text-aeblack-900">John Doe</span>
+            <div class="mb-2 font-normal">Hi John, thanks for sharing your feedback regarding TDRA.</div>
+            <a href="" class="aegov-btn btn-xs">Replay</a>
+        </div>
+        <button type="button" class="toast-dismiss" data-dismiss-target="#toast-message-cta"
+                aria-label="Close">
+            <span class="sr-only">Close</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>
+        </button>
+    </div>
 </div>
+
 ```
 
 **Note:** Complete toast structure with info icon (`toast-icon`), title, message, action button (`btn-xs`), and dismiss button with `data-dismiss-target` attribute matching the toast `id`.
@@ -132,7 +134,20 @@ The component fully supports right-to-left layouts. All AEGOV components support
 - Ensure toasts don't obscure critical UI elements
 
 **Icon Color Conventions:**
-- Info: `text-primary-600`
-- Success: `text-success-600`
-- Warning: `text-warning-600`
-- Error: `text-error-600`
+
+Following AEGOV semantic color structure:
+
+| Purpose | Color Name | Tailwind Class | Hex Code | AEGOV Role |
+|---------|------------|----------------|----------|------------|
+| **Primary** | AE Gold | `text-primary-600` or `text-aegold-600` | `#92722A` | Brand/Primary actions |
+| **Info** | Sea Blue | `text-seablue-600` | `#0090D4` | Secondary support/Information |
+| **Success** | AE Green | `text-aegreen-600` | `#3F8E50` | Success/Positive states |
+| **Warning** | Camel Yellow | `text-camel-600` | `#D67909` | Primary support/Warnings |
+| **Error** | AE Red | `text-aered-600` | `#D83731` | Error/Alert signaling |
+
+**AEGOV Color Mapping:**
+- `primary` → AE Gold (aegold) - Brand color
+- `primary-support` → Camel Yellow - Warnings
+- `secondary-support` → Sea Blue - Information
+
+**Note:** The design system does NOT provide generic `success`, `error`, or `warning` aliases. Always use the specific color names above.

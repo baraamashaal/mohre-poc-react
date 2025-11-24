@@ -92,3 +92,6 @@ export type {
   ModalIcon,
   ModalAction,
 } from './Modal';
+
+export { Toast, Toaster } from './Toast';
+export type { ToastProps, ToasterProps, ToastType, ToastAction } from './Toast';

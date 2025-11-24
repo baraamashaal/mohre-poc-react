@@ -146,6 +146,11 @@ const ModalShowcase = lazy(() =>
     default: module.ModalShowcase,
   }))
 );
+const ToastShowcase = lazy(() =>
+  import('../features/component-showcase/pages/ToastShowcase').then((module) => ({
+    default: module.ToastShowcase,
+  }))
+);
 
 /**
  * Loading fallback component
@@ -381,6 +386,14 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<PageLoader />}>
         <ModalShowcase />
+      </Suspense>
+    ),
+  },
+  {
+    path: routes.showcase.toast,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <ToastShowcase />
       </Suspense>
     ),
   },
